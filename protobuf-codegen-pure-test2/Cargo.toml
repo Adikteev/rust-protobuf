@@ -1,0 +1,14 @@
+[package]
+name = "protobuf-codegen-pure-test2"
+version = "0.0.0"
+authors = ["Stepan Koltsov <stepan.koltsov@gmail.com>"]
+publish = false
+edition = "2018"
+
+[dependencies]
+#protobuf-codegen-pure = {git = "https://github.com/stepancheg/rust-protobuf.git"}
+protobuf-codegen-pure = { path = "../protobuf-codegen-pure"}
+protobuf-codegen = {git = "https://github.com/stepancheg/rust-protobuf.git"}
+protoc-rust = {git = "https://github.com/stepancheg/rust-protobuf.git" }
+protobuf = {git = "https://github.com/stepancheg/rust-protobuf.git", features=["with-serde", "with-bytes"]}
+
