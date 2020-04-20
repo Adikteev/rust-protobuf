@@ -11,3 +11,16 @@ pub fn write_serde_attr(w: &mut CodeWriter, customize: &Customize, attr: &str) {
         }
     }
 }
+
+pub fn write_serde_attr_repr(w: &mut CodeWriter, customize: &Customize) {
+    if customize.serde_derive.unwrap_or(false) {
+        write_serde_attr(w, customize, "derive(Serialize_repr, Deserialize_repr)");
+    }
+}
+
+pub fn write_serde_repr(w: &mut CodeWriter, customize: &Customize) {
+    if customize.serde_derive.unwrap_or(false) {
+        // Enums are numbers in protobuf
+        w.write_line(&format!("#[repr(i16)]"))
+    }
+}

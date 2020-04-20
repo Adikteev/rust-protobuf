@@ -193,6 +193,10 @@ fn gen_file(
             ));
         }
 
+        if customize.serde_repr.unwrap_or(false) {
+            w.write_line("use serde_repr::*;")
+        }
+
         static NESTED_TYPE_NUMBER: protobuf::rt::Lazy<i32> = protobuf::rt::Lazy::INIT;
         let message_type_number = *NESTED_TYPE_NUMBER.get(|| {
             protobuf::reflect::MessageDescriptor::for_type::<FileDescriptorProto>()
