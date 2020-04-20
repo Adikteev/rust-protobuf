@@ -484,6 +484,12 @@ impl<'a> MessageGen<'a> {
             if !self.fields_except_oneof().is_empty() {
                 w.comment("message fields");
                 for field in self.fields_except_oneof() {
+                    if self.customize.serde_derive.unwrap_or(false) {
+                        match field.kind {
+                            FieldKind::Repeated(_) => w.write_line(&format!("#[serde(default)]")),
+                            _ => ()
+                        }
+                    }
                     field.write_struct_field(w);
                 }
             }
